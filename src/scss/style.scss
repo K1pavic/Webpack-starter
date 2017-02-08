@@ -1,0 +1,15 @@
+$light-gray: #577577;
+h1 {
+    background-color: $light-gray;
+}
+
+.img {
+    width: 100%;
+    height: 500px;
+}
+
+div img {
+    height: 100%;
+    width: 100%;
+    margin: 0, auto;
+}
