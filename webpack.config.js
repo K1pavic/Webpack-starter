@@ -12,28 +12,29 @@ var config = {
         publicPath: ""
     },
     module: {
-        loaders: [{
+        rules: [{
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract({
-                    loader: "css-loader?minimize!postcss-loader!sass-loader",
-                    fallbackloader: "style-loader"
-                })
+                loader: ExtractTextPlugin.extract([ // not working with "use" keyword
+                    { loader: "css-loader", options: { minimize: true }, fallback: "style-laoder" },
+                    { loader: "postcss-loader" },
+                    { loader: "sass-loader" }
+                ])
             },
             {
                 test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-                loader: "file-loader"
+                use: "file-loader"
             },
             {
                 test: /\.html$/,
-                loader: "html-loader?minimize"
+                use: [
+                    { loader: "html-loader", options: { minimize: true } }
+                ]
             },
             {
                 test: /.*\.(gif|png|jpe?g)$/i,
-                loader: [
-                    'file-loader',
-                    {
-                        loader: 'image-webpack-loader'
-                    }
+                use: [
+                    { loader: "file-loader" },
+                    { loader: "image-webpack-loader" }
                 ]
             }
         ]
