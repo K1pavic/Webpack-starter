@@ -15,7 +15,7 @@ var config = {
         rules: [{
                 test: /\.scss$/,
                 loader: ExtractTextPlugin.extract([ // not working with "use" keyword
-                    { loader: "css-loader", options: { minimize: true }, fallback: "style-laoder" },
+                    { loader: "css-loader", options: { minimize: true } },
                     { loader: "postcss-loader" },
                     { loader: "sass-loader" }
                 ])
